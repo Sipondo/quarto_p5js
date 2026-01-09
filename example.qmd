@@ -1,9 +1,18 @@
 ---
 title: "P5js Example"
+format:
+  revealjs: 
+    width: 1280
+    height: 720
+    margin: 0.08
+    slide-number: true
 ---
 
 ## Heading
 
-{{< p5js >}}
+{{< p5js https://raw.githubusercontent.com/processing/p5.js-example/refs/heads/main/examples/01_Shapes_And_Color/01_Color/code.js "100%" >}}
 
+## Hidden
+
+{{< p5js https://raw.githubusercontent.com/processing/p5.js-example/refs/heads/main/examples/01_Shapes_And_Color/01_Color/code.js viewMode=1 >}}
 
