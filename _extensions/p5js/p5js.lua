@@ -3,7 +3,7 @@ return {
     -- see https://quarto.org/docs/extensions/shortcodes.html
     -- for documentation on shortcode development
     -- first positional arg becomes src query param for the embedded page
-    local base_url = "https://raw.githack.com/Sipondo/p5micro/9a5a3699c39f617ee081f7715799b05929fb2cd7/p5micro.html"
+    local base_url = "https://raw.githack.com/Sipondo/p5micro/0f5e17071c77dc23edf329fe435d06b1cc6c0cd0/p5micro.html"
 
     local function urlencode(str)
       if not str then return "" end
