@@ -3,7 +3,7 @@ return {
     -- see https://quarto.org/docs/extensions/shortcodes.html
     -- for documentation on shortcode development
     -- first positional arg becomes src query param for the embedded page
-    local base_url = "https://raw.githack.com/Sipondo/p5micro/0f5e17071c77dc23edf329fe435d06b1cc6c0cd0/p5micro.html"
+    local base_url = "https://raw.githack.com/Sipondo/p5micro/0a0c9dba44f8adf94d907274a8409a73f41aec0f/p5micro.html"
 
     local function urlencode(str)
       if not str then return "" end
@@ -13,8 +13,6 @@ return {
     end
 
     local src_arg = args and args[1] or nil
-    local width = args and args[2] or "100%"
-    local height = args and args[3] or "80%"
     local src_qs = ""
     local sep = "?"
 
@@ -32,8 +30,36 @@ return {
     end
 
     local iframe_url = base_url .. src_qs
+    -- return pandoc.RawBlock('html',
+    --   '<iframe width="' ..
+    --   width .. '" height="' .. height .. '" src="' .. iframe_url .. '" title="P5.js Applet"></iframe>')
     return pandoc.RawBlock('html',
-      '<iframe width="' ..
-      width .. '" height="' .. height .. '" src="' .. iframe_url .. '" title="P5.js Applet"></iframe>')
+      [[
+    <div class="p5-frame">
+      <iframe src="]] .. iframe_url .. [[" title="P5.js Applet"></iframe>
+    </div>
+    <style>
+    /* Make the slide a flex container */
+    .reveal .slide {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    /* Wrapper around the iframe */
+    .p5-frame {
+      flex: 1;        /* take remaining vertical space */
+      min-height: 0;  /* allow flex shrinking */
+      display: flex;  /* let iframe fill container */
+    }
+
+    /* The iframe itself */
+    .p5-frame iframe {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    </style>
+    ]])
   end
 }
